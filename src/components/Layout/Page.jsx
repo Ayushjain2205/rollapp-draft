@@ -13,7 +13,7 @@ const Page = ({
       style={{ backgroundColor: pageColor }}
     >
       <div className="flex flex-row justify-between w-full">
-        {back && (
+        {back ? (
           <Link href={back}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +30,8 @@ const Page = ({
               />
             </svg>
           </Link>
+        ) : (
+          <div style={{ width: "20px", height: "20px" }}></div>
         )}
 
         {showMenu && (
