@@ -13,6 +13,7 @@
     "@thirdweb-dev/react": "^4.4.0",
     "@thirdweb-dev/sdk": "^4.0.28",
     "ethers": "^5.7.2",
+    "flipping-pages": "^3.1.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
