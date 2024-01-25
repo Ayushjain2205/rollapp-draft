@@ -31,7 +31,7 @@ const Stamp = ({ image, color = "#FFC022" }) => {
       </svg>
       <img
         src={image}
-        alt="Overlay"
+        alt="Stamp"
         className="absolute inset-0 p-[42px] m-auto w-auto h-auto max-w-full max-h-full"
       />
     </div>

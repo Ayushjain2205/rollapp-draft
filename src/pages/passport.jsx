@@ -6,16 +6,14 @@ import "flipping-pages/dist/style.css";
 
 const Passport = () => {
   const [selected, setSelected] = useState(0);
-  const totalPages = 3; // Adjust this based on your actual number of pages
+  const totalPages = 3;
 
-  // Navigate to the previous page
   const goToPreviousPage = () => {
     if (selected > 0) {
       setSelected(selected - 1);
     }
   };
 
-  // Navigate to the next page
   const goToNextPage = () => {
     if (selected < totalPages - 1) {
       setSelected(selected + 1);
@@ -24,18 +22,38 @@ const Passport = () => {
 
   return (
     <Page back="/passport-cover" pageColor="#FFC022" showMenu>
-      <div className="absolute top-[60px] left-[21px] w-[348px] h-[458px]">
+      <div className="absolute top-[65px] left-[21px] w-[348px] h-[458px]">
         <FlippingPages
           direction="right-to-left"
           onSwipeEnd={setSelected}
           selected={selected}
         >
-          <PassportPage />
-          <PassportPage />
-          <PassportPage />
+          <PassportPage
+            huntName="Mickey's hunt"
+            expiryDate="2024-12-31"
+            stampImage="/images/mickey.png"
+            stampColor="#FF0205"
+            utilityOne="Free Entry to Disneyland"
+            utilityTwo="20% Off at Disney Store"
+          />
+          <PassportPage
+            huntName="Mickey's hunt"
+            expiryDate="2024-12-31"
+            stampImage="/images/mickey.png"
+            stampColor="#FFFF05"
+            utilityOne="Free Entry to Disneyland"
+            utilityTwo="20% Off at Disney Store"
+          />
+          <PassportPage
+            huntName="Mickey's hunt"
+            expiryDate="2024-12-31"
+            stampImage="/images/mickey.png"
+            stampColor="#FF00FF"
+            utilityOne="Free Entry to Disneyland"
+            utilityTwo="20% Off at Disney Store"
+          />
         </FlippingPages>
 
-        {/* Navigation Buttons */}
         <div className="flex justify-between mt-4">
           <button
             className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full bg-[#363436]"
