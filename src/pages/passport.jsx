@@ -6,7 +6,35 @@ import "flipping-pages/dist/style.css";
 
 const Passport = () => {
   const [selected, setSelected] = useState(0);
-  const totalPages = 3;
+
+  const passportPages = [
+    {
+      huntName: "Mickey's Hunt",
+      expiryDate: "2024-12-31",
+      stampImage: "/images/mickey.png",
+      stampColor: "#FF0205",
+      utilityOne: "Free Entry to Disneyland",
+      utilityTwo: "20% Off at Disney Store",
+    },
+    {
+      huntName: "Mickey's Hunt",
+      expiryDate: "2024-12-31",
+      stampImage: "/images/mickey.png",
+      stampColor: "#430235",
+      utilityOne: "Free Entry to Disneyland",
+      utilityTwo: "20% Off at Disney Store",
+    },
+    {
+      huntName: "Mickey's Hunt",
+      expiryDate: "2024-12-31",
+      stampImage: "/images/mickey.png",
+      stampColor: "#FFFF05",
+      utilityOne: "Free Entry to Disneyland",
+      utilityTwo: "20% Off at Disney Store",
+    },
+  ];
+
+  const totalPages = passportPages.length;
 
   const goToPreviousPage = () => {
     if (selected > 0) {
@@ -28,30 +56,17 @@ const Passport = () => {
           onSwipeEnd={setSelected}
           selected={selected}
         >
-          <PassportPage
-            huntName="Mickey's hunt"
-            expiryDate="2024-12-31"
-            stampImage="/images/mickey.png"
-            stampColor="#FF0205"
-            utilityOne="Free Entry to Disneyland"
-            utilityTwo="20% Off at Disney Store"
-          />
-          <PassportPage
-            huntName="Mickey's hunt"
-            expiryDate="2024-12-31"
-            stampImage="/images/mickey.png"
-            stampColor="#FFFF05"
-            utilityOne="Free Entry to Disneyland"
-            utilityTwo="20% Off at Disney Store"
-          />
-          <PassportPage
-            huntName="Mickey's hunt"
-            expiryDate="2024-12-31"
-            stampImage="/images/mickey.png"
-            stampColor="#FF00FF"
-            utilityOne="Free Entry to Disneyland"
-            utilityTwo="20% Off at Disney Store"
-          />
+          {passportPages.map((page, index) => (
+            <PassportPage
+              key={index}
+              huntName={page.huntName}
+              expiryDate={page.expiryDate}
+              stampImage={page.stampImage}
+              stampColor={page.stampColor}
+              utilityOne={page.utilityOne}
+              utilityTwo={page.utilityTwo}
+            />
+          ))}
         </FlippingPages>
 
         <div className="flex justify-between mt-4">

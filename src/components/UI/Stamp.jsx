@@ -32,7 +32,7 @@ const Stamp = ({ image, color = "#FFC022" }) => {
       <img
         src={image}
         alt="Stamp"
-        className="absolute inset-0 p-[42px] m-auto w-auto h-auto max-w-full max-h-full"
+        className="absolute inset-0 p-[30px] m-auto w-auto h-auto max-w-full max-h-full"
       />
     </div>
   );
