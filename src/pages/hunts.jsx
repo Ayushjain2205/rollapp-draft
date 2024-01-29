@@ -11,6 +11,7 @@ import Stamp from "../components/UI/Stamp";
 const Hunts = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [randomPoints, setRandomPoints] = useState([]);
+  const [activeOverlay, setActiveOverlay] = useState(null);
 
   const containerStyle = {
     width: "100%",
@@ -116,15 +117,39 @@ const Hunts = () => {
               mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
               position={{ lat: point.lat, lng: point.lng }}
             >
-              <Stamp
-                image={stampData[index].image}
-                color={stampData[index].color}
-                marker
-              />
+              <div onClick={() => setActiveOverlay(index)}>
+                <Stamp
+                  image={stampData[index].image}
+                  color={stampData[index].color}
+                  marker
+                />
+              </div>
             </OverlayView>
           ))}
         </GoogleMap>
       </LoadScript>
+      {activeOverlay !== null && (
+        <div className="absolute h-[208px] w-[352px] border-[2px] border-black rounded-[8px] bg-white flex flex-col bottom-[40px] left-[19px] z-10 ">
+          <div className=" flex flex-row gap-[22px] mt-[22px] mx-[22px] ">
+            <div>
+              <Stamp image="/images/mickey.png" preview />
+            </div>
+            <div className="flex flex-col gap-[2px]">
+              <p className="text-[24px] font-[700]">find MICKEY!</p>
+              <p className="text-[12px] leading-[16px] tracking-[0.2px]">
+                Solve the clues to win free goodies at your loved spot
+              </p>
+              <p className="text-[12px] text-[#00000054] mt-[2px]">
+                Disneyland Park, Paris
+              </p>
+              <p className="text-[16px] text-[#F24E1E] font-[700]">1/5</p>
+            </div>
+          </div>
+          <div className="absolute flex bottom-0 w-full h-[48px] items-center bg-[#262626]">
+            <p className="text-center text-white w-full">Start the hunt</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
