@@ -7,6 +7,7 @@ import {
 } from "@react-google-maps/api";
 import mapStyle from "../utils/mapStyle.json";
 import Stamp from "../components/UI/Stamp";
+import Link from "next/link";
 
 const Hunts = () => {
   const [userLocation, setUserLocation] = useState(null);
@@ -65,6 +66,15 @@ const Hunts = () => {
     { image: "/images/mcd.png", color: "#FEC7C7" },
     { image: "/images/starbucks.png", color: "#F091F9" },
   ];
+
+  const linkData = {
+    huntName: "Mickey's Hunt",
+    expiryDate: "2024-12-31",
+    stampImage: "/images/mickey.png",
+    stampColor: "#FF0205",
+    utilityOne: "Free Entry to Disneyland",
+    utilityTwo: "20% Off at Disney Store",
+  };
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -145,9 +155,16 @@ const Hunts = () => {
               <p className="text-[16px] text-[#F24E1E] font-[700]">1/5</p>
             </div>
           </div>
-          <div className="absolute flex bottom-0 w-full h-[48px] items-center bg-[#262626]">
-            <p className="text-center text-white w-full">Start the hunt</p>
-          </div>
+          <Link
+            href={{
+              pathname: "/preview",
+              query: linkData,
+            }}
+          >
+            <div className="absolute flex bottom-0 w-full h-[48px] items-center bg-[#262626]">
+              <p className="text-center text-white w-full">Start the hunt</p>
+            </div>
+          </Link>
         </div>
       )}
     </div>
