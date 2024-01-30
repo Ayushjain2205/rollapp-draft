@@ -71,7 +71,7 @@ const Passport = () => {
 
         <div className="flex justify-between mt-4">
           <button
-            className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full bg-[#363436]"
+            className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full bg-[#363436] opacity-100 disabled:opacity-0"
             onClick={goToPreviousPage}
             disabled={selected === 0}
           >
@@ -91,7 +91,7 @@ const Passport = () => {
             </svg>
           </button>
           <button
-            className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full bg-[#363436]"
+            className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full bg-[#363436] opacity-100 disabled:opacity-0"
             onClick={goToNextPage}
             disabled={selected === totalPages - 1}
           >

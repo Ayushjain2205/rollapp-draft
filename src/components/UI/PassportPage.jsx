@@ -29,7 +29,7 @@ const PassportPage = ({
           UTILITY:
         </span>
         <div className="flex flex-row gap-[50px] h-[133px] w-[302px] px-[36px] py-[22px] border-[2px] border-black rounded-[6px]">
-          <div className="flex flex-col gap-[12px] w-[81px]">
+          <div className="flex flex-col items-center gap-[12px] w-[81px]">
             <img
               className="h-[32px] w-[32px]"
               src="/svgs/utility1.svg"
@@ -39,7 +39,7 @@ const PassportPage = ({
               {utilityOne}
             </span>
           </div>
-          <div className="flex flex-col gap-[12px] w-[81px]">
+          <div className="flex flex-col items-center gap-[12px] w-[81px]">
             <img
               className="h-[32px] w-[32px]"
               src="/svgs/utility2.svg"
