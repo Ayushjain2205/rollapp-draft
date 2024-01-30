@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import Page from "../components/Layout/Page";
+import Page from "../components/Layout/Page"; // Make sure you have this Page component
 
 export default function Puzzle() {
   const wordToFind = "MICKEY";
@@ -32,7 +32,6 @@ export default function Puzzle() {
     setGrid(generateGrid());
   }, []);
 
-  // Function to build the word from selected cells
   const buildWord = useCallback(
     (selectedCells) => {
       return selectedCells
@@ -45,7 +44,6 @@ export default function Puzzle() {
     [grid]
   );
 
-  // Function to handle start of selection
   const handleSelectionStart = (rowIndex, cellIndex) => {
     setIsDragging(true);
     setStartCell({ rowIndex, cellIndex });
@@ -54,14 +52,12 @@ export default function Puzzle() {
     setCurrentWord(buildWord(newSelectedCells));
   };
 
-  // Determine if the current cell is in line with the start cell
   const isInLine = (start, current) => {
     const dx = Math.abs(start.rowIndex - current.rowIndex);
     const dy = Math.abs(start.cellIndex - current.cellIndex);
     return dx === 0 || dy === 0 || dx === dy;
   };
 
-  // Function to handle selection change (mouse move or touch move)
   const handleSelectionChange = (rowIndex, cellIndex) => {
     if (isDragging && startCell) {
       const currentCell = { rowIndex, cellIndex };
@@ -87,18 +83,14 @@ export default function Puzzle() {
     }
   };
 
-  // Function to handle end of selection
   const handleSelectionEnd = useCallback(() => {
     setIsDragging(false);
     setStartCell(null);
-    // Change color based on correctness
-    if (currentWord !== wordToFind) {
+    setTimeout(() => {
       setSelectedCells([]);
-    }
-    console.log("Selected Word:", currentWord);
+    }, 1000); // Clear selection after 1 second
   }, [currentWord, wordToFind]);
 
-  // Function to get row and column index from touch event
   const getTouchPosition = (event) => {
     const touch = event.touches[0];
     const element = document.elementFromPoint(touch.clientX, touch.clientY);
@@ -121,8 +113,11 @@ export default function Puzzle() {
               );
               let bgColor = "bg-gray-200";
               if (isSelected) {
-                bgColor =
-                  currentWord === wordToFind ? "bg-green-500" : "bg-yellow-500";
+                bgColor = "bg-yellow-500";
+                if (!isDragging) {
+                  bgColor =
+                    currentWord === wordToFind ? "bg-green-500" : "bg-red-500";
+                }
               }
               return (
                 <div
