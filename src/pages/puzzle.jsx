@@ -2,16 +2,26 @@ import { useState, useEffect, useCallback } from "react";
 import Page from "../components/Layout/Page";
 
 export default function Puzzle() {
-  // Function to generate a 10x10 grid with random letters
+  const wordToFind = "MICKEY";
+
+  // Function to generate an 8x8 grid with 'MICKEY' hidden in it
   const generateGrid = () => {
-    return Array.from({ length: 8 }, () =>
+    let newGrid = Array.from({ length: 8 }, () =>
       Array.from({ length: 8 }, () =>
         String.fromCharCode(65 + Math.floor(Math.random() * 26))
       )
     );
+
+    // Place 'MICKEY' randomly in the grid
+    const startRow = Math.floor(Math.random() * (8 - wordToFind.length));
+    const startCol = Math.floor(Math.random() * 8);
+    for (let i = 0; i < wordToFind.length; i++) {
+      newGrid[startRow + i][startCol] = wordToFind.charAt(i);
+    }
+
+    return newGrid;
   };
 
-  // State for the grid, selected cells, and the current word
   const [grid, setGrid] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [currentWord, setCurrentWord] = useState("");
@@ -81,8 +91,12 @@ export default function Puzzle() {
   const handleSelectionEnd = useCallback(() => {
     setIsDragging(false);
     setStartCell(null);
+    // Change color based on correctness
+    if (currentWord !== wordToFind) {
+      setSelectedCells([]);
+    }
     console.log("Selected Word:", currentWord);
-  }, [currentWord]);
+  }, [currentWord, wordToFind]);
 
   // Function to get row and column index from touch event
   const getTouchPosition = (event) => {
@@ -101,39 +115,50 @@ export default function Puzzle() {
       <div className="flex flex-col w-full justify-center items-center bg-gray-100">
         <div className="grid grid-cols-8 p-4 bg-white shadow-lg rounded">
           {grid.map((row, rowIndex) =>
-            row.map((cell, cellIndex) => (
-              <div
-                key={`${rowIndex}-${cellIndex}`}
-                data-row={rowIndex}
-                data-cell={cellIndex}
-                className={`w-10 h-10 bg-gray-200 flex justify-center items-center cursor-pointer select-none ${
-                  selectedCells.includes(`${rowIndex}-${cellIndex}`)
-                    ? "bg-[#00FF00]"
-                    : ""
-                }`}
-                onMouseDown={() => handleSelectionStart(rowIndex, cellIndex)}
-                onMouseEnter={() => handleSelectionChange(rowIndex, cellIndex)}
-                onMouseUp={handleSelectionEnd}
-                onTouchStart={(e) => {
-                  const position = getTouchPosition(e);
-                  if (position) {
-                    handleSelectionStart(position.rowIndex, position.cellIndex);
+            row.map((cell, cellIndex) => {
+              const isSelected = selectedCells.includes(
+                `${rowIndex}-${cellIndex}`
+              );
+              let bgColor = "bg-gray-200";
+              if (isSelected) {
+                bgColor =
+                  currentWord === wordToFind ? "bg-green-500" : "bg-yellow-500";
+              }
+              return (
+                <div
+                  key={`${rowIndex}-${cellIndex}`}
+                  data-row={rowIndex}
+                  data-cell={cellIndex}
+                  className={`w-10 h-10 ${bgColor} flex justify-center items-center cursor-pointer select-none`}
+                  onMouseDown={() => handleSelectionStart(rowIndex, cellIndex)}
+                  onMouseEnter={() =>
+                    handleSelectionChange(rowIndex, cellIndex)
                   }
-                }}
-                onTouchMove={(e) => {
-                  const position = getTouchPosition(e);
-                  if (position) {
-                    handleSelectionChange(
-                      position.rowIndex,
-                      position.cellIndex
-                    );
-                  }
-                }}
-                onTouchEnd={handleSelectionEnd}
-              >
-                {cell}
-              </div>
-            ))
+                  onMouseUp={handleSelectionEnd}
+                  onTouchStart={(e) => {
+                    const position = getTouchPosition(e);
+                    if (position) {
+                      handleSelectionStart(
+                        position.rowIndex,
+                        position.cellIndex
+                      );
+                    }
+                  }}
+                  onTouchMove={(e) => {
+                    const position = getTouchPosition(e);
+                    if (position) {
+                      handleSelectionChange(
+                        position.rowIndex,
+                        position.cellIndex
+                      );
+                    }
+                  }}
+                  onTouchEnd={handleSelectionEnd}
+                >
+                  {cell}
+                </div>
+              );
+            })
           )}
         </div>
         <div className="mt-4 text-lg">Selected Word: {currentWord}</div>
