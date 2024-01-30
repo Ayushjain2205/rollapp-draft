@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Cameraview from "../components/Cameraview";
+import Cameraview from "../components/CameraView";
 import Link from "next/link";
 import Stamp from "../components/UI/Stamp";
 
