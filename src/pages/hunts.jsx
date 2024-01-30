@@ -59,19 +59,64 @@ const Hunts = () => {
     return { lat, lng };
   };
 
-  const stampData = [
-    { image: "/images/mickey.png", color: "#FFC022" },
-    { image: "/images/hm.png", color: "#FB4912" },
-    { image: "/images/apple.png", color: "#FCFCFC" },
-    { image: "/images/mcd.png", color: "#FEC7C7" },
-    { image: "/images/starbucks.png", color: "#F091F9" },
+  const huntData = [
+    {
+      huntName: "Find Mickey",
+      expiryDate: "2024-12-31",
+      image: "/images/mickey.png",
+      color: "#FFC022",
+      utilityOne: "Free Entry to Disneyland",
+      utilityTwo: "20% Off at Disney Store",
+      location: "Disneyland Park, Paris",
+      huntDescription: "Solve the clues to win free goodies at your loved spot",
+    },
+    {
+      huntName: "H&M's Hunt",
+      expiryDate: "2025-01-15",
+      image: "/images/hm.png",
+      color: "#FB4912",
+      utilityOne: "30% Off on Apparel",
+      utilityTwo: "Special Access to Sales",
+      location: "H&M Store, New York",
+      huntDescription: "Find hidden treasures in the latest collections",
+    },
+    {
+      huntName: "Where iPhone",
+      expiryDate: "2024-11-20",
+      image: "/images/apple.png",
+      color: "#FCFCFC",
+      utilityOne: "Early Access to iPhone",
+      utilityTwo: "Exclusive Apple Merchandise",
+      location: "Apple Store, Cupertino",
+      huntDescription: "Discover the secrets of the latest Apple technology",
+    },
+    {
+      huntName: "McD's Special",
+      expiryDate: "2024-10-31",
+      image: "/images/mcd.png",
+      color: "#FEC7C7",
+      utilityOne: "Free Happy Meal",
+      utilityTwo: "Buy One Get One Free Burger",
+      location: "McDonald's, Chicago",
+      huntDescription: "Uncover tasty treats in a fun-filled burger hunt",
+    },
+    {
+      huntName: "Coffee Fiesta",
+      expiryDate: "2024-12-10",
+      image: "/images/starbucks.png",
+      color: "#F091F9",
+      utilityOne: "Free Custom Drink",
+      utilityTwo: "20% Off on Merchandise",
+      location: "Starbucks, Seattle",
+      huntDescription: "Embark on a journey to discover unique coffee",
+    },
   ];
 
   const linkData = {
-    huntName: "Mickey's Hunt",
+    huntName: "Find Mickey",
     expiryDate: "2024-12-31",
-    stampImage: "/images/mickey.png",
-    stampColor: "#FF0205",
+    image: "/images/mickey.png",
+    color: "#FF0205",
     utilityOne: "Free Entry to Disneyland",
     utilityTwo: "20% Off at Disney Store",
   };
@@ -83,7 +128,6 @@ const Hunts = () => {
           const { latitude, longitude } = position.coords;
           setUserLocation({ lat: latitude, lng: longitude });
 
-          // Generate 5 random points and update the state
           const points = [];
           for (let i = 0; i < 5; i++) {
             points.push(
@@ -129,8 +173,8 @@ const Hunts = () => {
             >
               <div onClick={() => setActiveOverlay(index)}>
                 <Stamp
-                  image={stampData[index].image}
-                  color={stampData[index].color}
+                  image={huntData[index].image}
+                  color={huntData[index].color}
                   marker
                 />
               </div>
@@ -142,15 +186,21 @@ const Hunts = () => {
         <div className="absolute h-[208px] w-[352px] border-[2px] border-black rounded-[8px] bg-white flex flex-col bottom-[40px] left-[19px] z-10 ">
           <div className=" flex flex-row gap-[22px] mt-[22px] mx-[22px] ">
             <div>
-              <Stamp image="/images/mickey.png" preview />
+              <Stamp
+                image={huntData[activeOverlay].image}
+                color={huntData[activeOverlay].color}
+                preview
+              />
             </div>
             <div className="flex flex-col gap-[2px]">
-              <p className="text-[24px] font-[700]">find MICKEY!</p>
+              <p className="text-[24px] font-[700]">
+                {huntData[activeOverlay].huntName}
+              </p>
               <p className="text-[12px] leading-[16px] tracking-[0.2px]">
-                Solve the clues to win free goodies at your loved spot
+                {huntData[activeOverlay].huntDescription}
               </p>
               <p className="text-[12px] text-[#00000054] mt-[2px]">
-                Disneyland Park, Paris
+                {huntData[activeOverlay].location}
               </p>
               <p className="text-[16px] text-[#F24E1E] font-[700]">1/5</p>
             </div>
