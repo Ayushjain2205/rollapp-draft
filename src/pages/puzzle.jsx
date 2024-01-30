@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import Page from "../components/Layout/Page"; // Make sure you have this Page component
+import Page from "../components/Layout/Page";
 
 export default function Puzzle() {
-  const wordToFind = "MICKEY";
+  const wordToFind = "DONALD";
 
-  // Function to generate an 8x8 grid with 'MICKEY' hidden in it
   const generateGrid = () => {
     let newGrid = Array.from({ length: 8 }, () =>
       Array.from({ length: 8 }, () =>
@@ -12,11 +11,10 @@ export default function Puzzle() {
       )
     );
 
-    // Place 'MICKEY' randomly in the grid
-    const startRow = Math.floor(Math.random() * (8 - wordToFind.length));
-    const startCol = Math.floor(Math.random() * 8);
+    const startRow = Math.floor(Math.random() * 8);
+    const startCol = Math.floor(Math.random() * (8 - wordToFind.length));
     for (let i = 0; i < wordToFind.length; i++) {
-      newGrid[startRow + i][startCol] = wordToFind.charAt(i);
+      newGrid[startRow][startCol + i] = wordToFind.charAt(i);
     }
 
     return newGrid;
@@ -25,6 +23,7 @@ export default function Puzzle() {
   const [grid, setGrid] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [currentWord, setCurrentWord] = useState("");
+  const [wordStatus, setWordStatus] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startCell, setStartCell] = useState(null);
 
@@ -86,9 +85,15 @@ export default function Puzzle() {
   const handleSelectionEnd = useCallback(() => {
     setIsDragging(false);
     setStartCell(null);
-    setTimeout(() => {
-      setSelectedCells([]);
-    }, 1000); // Clear selection after 1 second
+    if (currentWord === wordToFind) {
+      setWordStatus("correct");
+    } else {
+      setWordStatus("incorrect");
+      setTimeout(() => {
+        setSelectedCells([]);
+        setWordStatus(null);
+      }, 1000);
+    }
   }, [currentWord, wordToFind]);
 
   const getTouchPosition = (event) => {
@@ -103,9 +108,10 @@ export default function Puzzle() {
   };
 
   return (
-    <Page>
-      <div className="flex flex-col w-full justify-center items-center bg-gray-100">
-        <div className="grid grid-cols-8 p-4 bg-white shadow-lg rounded">
+    <Page pageColor="#FFC022" back="/hunts">
+      <div className="flex flex-col w-full justify-center items-center ">
+        <p className="w-full text-[24px]">Who is Mickey Mouse’s bestfriend?</p>
+        <div className="grid grid-cols-8 p-4 rounded">
           {grid.map((row, rowIndex) =>
             row.map((cell, cellIndex) => {
               const isSelected = selectedCells.includes(
@@ -113,7 +119,7 @@ export default function Puzzle() {
               );
               let bgColor = "bg-gray-200";
               if (isSelected) {
-                bgColor = "bg-yellow-500";
+                bgColor = "bg-blue-500";
                 if (!isDragging) {
                   bgColor =
                     currentWord === wordToFind ? "bg-green-500" : "bg-red-500";
@@ -156,7 +162,33 @@ export default function Puzzle() {
             })
           )}
         </div>
-        <div className="mt-4 text-lg">Selected Word: {currentWord}</div>
+        <div className="mt-2 text-lg">
+          {currentWord}{" "}
+          {wordStatus === "correct" ? (
+            <span className="text-green-500">✅</span>
+          ) : wordStatus === "incorrect" ? (
+            <span className="text-red-500">❌</span>
+          ) : null}
+        </div>
+        {wordStatus === "correct" && (
+          <div className="mt-4">
+            <button className="flex flex-row items-center gap-[8px] text-white bg-[#262626] h-[40px] w-[160px] rounded-[8px] font-[500] justify-center">
+              Claim
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <path
+                  d="M1.37556 7.59375L10.5178 7.59375L5.04588 12.3438C4.95838 12.4203 5.0115 12.5625 5.12713 12.5625L6.50994 12.5625C6.57088 12.5625 6.62869 12.5406 6.674 12.5016L12.5787 7.37812C12.6328 7.33125 12.6761 7.27329 12.7059 7.20819C12.7356 7.14308 12.751 7.07235 12.751 7.00078C12.751 6.92921 12.7356 6.85848 12.7059 6.79337C12.6761 6.72827 12.6328 6.67031 12.5787 6.62344L6.63963 1.46875C6.61619 1.44844 6.58806 1.4375 6.55838 1.4375L5.12869 1.4375C5.01306 1.4375 4.95994 1.58125 5.04744 1.65625L10.5178 6.40625L1.37556 6.40625C1.30681 6.40625 1.25056 6.4625 1.25056 6.53125L1.25056 7.46875C1.25056 7.5375 1.30681 7.59375 1.37556 7.59375Z"
+                  fill="white"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </Page>
   );
