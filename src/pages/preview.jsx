@@ -2,6 +2,7 @@ import React from "react";
 import Page from "../components/Layout/Page";
 import Stamp from "../components/UI/Stamp";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Preview = () => {
   const router = useRouter();
@@ -47,9 +48,11 @@ const Preview = () => {
             </span>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center absolute bottom-0 left-0 w-full h-[48px] bg-[#262626]">
-          <p className="text-center text-white w-full">Let's play</p>
-        </div>
+        <Link href="/puzzle">
+          <div className="flex flex-col items-center justify-center absolute bottom-0 left-0 w-full h-[48px] bg-[#262626]">
+            <p className="text-center text-white w-full">Let's play</p>
+          </div>
+        </Link>
       </div>
     </Page>
   );
