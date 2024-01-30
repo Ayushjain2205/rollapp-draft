@@ -2,10 +2,12 @@ import React from "react";
 import Page from "../components/Layout/Page";
 import Stamp from "../components/UI/Stamp";
 import Link from "next/link";
+import Confetti from "react-confetti";
 
 const celebration = () => {
   return (
     <Page>
+      <Confetti width="400" height="665" />
       <p className="text-[24px] mb-[32px]">YAAYY! YOU WON!</p>
       <Stamp />
       <p className="text-[32px] tracking-[0.2px] font-[700] mb-[64px]">
