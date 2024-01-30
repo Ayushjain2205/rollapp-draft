@@ -9,6 +9,8 @@ export const huntData = [
     utilityTwo: "20% Off at Disney Store",
     location: "Disneyland Park, Paris",
     huntDescription: "Solve the clues to win free goodies at your loved spot",
+    question: "Who is Mickey Mouse’s bestfriend?",
+    answer: "DONALD",
   },
   {
     huntId: 2,
@@ -20,6 +22,8 @@ export const huntData = [
     utilityTwo: "Special Access to Sales",
     location: "H&M Store, New York",
     huntDescription: "Find hidden treasures in the latest collections",
+    question: "What color is the H&M logo?",
+    answer: "RED",
   },
   {
     huntId: 3,
@@ -31,6 +35,8 @@ export const huntData = [
     utilityTwo: "Exclusive Apple Merchandise",
     location: "Apple Store, Cupertino",
     huntDescription: "Discover the secrets of the latest Apple technology",
+    question: "What fruit represents Apple Inc.?",
+    answer: "APPLE",
   },
   {
     huntId: 4,
@@ -42,6 +48,8 @@ export const huntData = [
     utilityTwo: "Buy One Get One Free Burger",
     location: "McDonald's, Chicago",
     huntDescription: "Uncover tasty treats in a fun-filled burger hunt",
+    question: "What is McDonald's mascot's name?",
+    answer: "RONALD",
   },
   {
     huntId: 5,
@@ -53,5 +61,7 @@ export const huntData = [
     utilityTwo: "20% Off on Merchandise",
     location: "Starbucks, Seattle",
     huntDescription: "Embark on a journey to discover unique coffee",
+    question: "What color is Starbucks’ logo?",
+    answer: "GREEN",
   },
 ];

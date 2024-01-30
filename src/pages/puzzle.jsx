@@ -2,13 +2,36 @@ import { useState, useEffect, useCallback } from "react";
 import Page from "../components/Layout/Page";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { huntData } from "../utils/huntData"; // Make sure this import is correct
 
 export default function Puzzle() {
   const router = useRouter();
   const { huntId } = router.query;
-  const wordToFind = "DONALD";
 
-  const generateGrid = () => {
+  const [currentHunt, setCurrentHunt] = useState(null);
+  const [grid, setGrid] = useState([]);
+  const [selectedCells, setSelectedCells] = useState([]);
+  const [currentWord, setCurrentWord] = useState("");
+  const [wordStatus, setWordStatus] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startCell, setStartCell] = useState(null);
+
+  useEffect(() => {
+    if (huntId) {
+      const hunt = huntData.find(
+        (h) => h.huntId.toString() === huntId.toString()
+      );
+      setCurrentHunt(hunt);
+    }
+  }, [huntId]);
+
+  useEffect(() => {
+    if (currentHunt && currentHunt.answer) {
+      setGrid(generateGrid(currentHunt.answer));
+    }
+  }, [currentHunt]);
+
+  const generateGrid = (wordToFind) => {
     let newGrid = Array.from({ length: 8 }, () =>
       Array.from({ length: 8 }, () =>
         String.fromCharCode(65 + Math.floor(Math.random() * 26))
@@ -18,22 +41,11 @@ export default function Puzzle() {
     const startRow = Math.floor(Math.random() * 8);
     const startCol = Math.floor(Math.random() * (8 - wordToFind.length));
     for (let i = 0; i < wordToFind.length; i++) {
-      newGrid[startRow][startCol + i] = wordToFind.charAt(i);
+      newGrid[startRow][startCol + i] = wordToFind.charAt(i).toUpperCase();
     }
 
     return newGrid;
   };
-
-  const [grid, setGrid] = useState([]);
-  const [selectedCells, setSelectedCells] = useState([]);
-  const [currentWord, setCurrentWord] = useState("");
-  const [wordStatus, setWordStatus] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startCell, setStartCell] = useState(null);
-
-  useEffect(() => {
-    setGrid(generateGrid());
-  }, []);
 
   const buildWord = useCallback(
     (selectedCells) => {
@@ -89,7 +101,7 @@ export default function Puzzle() {
   const handleSelectionEnd = useCallback(() => {
     setIsDragging(false);
     setStartCell(null);
-    if (currentWord === wordToFind) {
+    if (currentWord === currentHunt?.answer) {
       setWordStatus("correct");
     } else {
       setWordStatus("incorrect");
@@ -98,7 +110,7 @@ export default function Puzzle() {
         setWordStatus(null);
       }, 1000);
     }
-  }, [currentWord, wordToFind]);
+  }, [currentWord, currentHunt]);
 
   const getTouchPosition = (event) => {
     const touch = event.touches[0];
@@ -111,10 +123,18 @@ export default function Puzzle() {
       : null;
   };
 
+  if (!currentHunt) {
+    return (
+      <Page>
+        <div>Loading...</div>
+      </Page>
+    );
+  }
+
   return (
     <Page pageColor="#FFC022" back="/hunts">
-      <div className="flex flex-col w-full justify-center items-center ">
-        <p className="w-full text-[24px]">Who is Mickey Mouse’s bestfriend?</p>
+      <div className="flex flex-col w-full justify-center items-center">
+        <p className="w-full text-[24px]">{currentHunt.question}</p>
         <div className="grid grid-cols-8 p-4 rounded">
           {grid.map((row, rowIndex) =>
             row.map((cell, cellIndex) => {
@@ -126,7 +146,7 @@ export default function Puzzle() {
                 bgColor = "bg-blue-500";
                 if (!isDragging) {
                   bgColor =
-                    currentWord === wordToFind ? "bg-green-500" : "bg-red-500";
+                    wordStatus === "correct" ? "bg-green-500" : "bg-red-500";
                 }
               }
               return (
@@ -183,7 +203,7 @@ export default function Puzzle() {
               }}
             >
               <button className="flex flex-row items-center gap-[8px] text-white bg-[#262626] h-[40px] w-[160px] rounded-[8px] font-[500] justify-center">
-                Claim
+                Claim Prize
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
