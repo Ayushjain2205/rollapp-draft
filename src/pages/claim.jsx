@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Cameraview from "../components/CameraView";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Stamp from "../components/UI/Stamp";
+import { huntData } from "../utils/huntData";
 
 const Claim = () => {
+  const router = useRouter();
+  const { huntId } = router.query;
+
   const [showImage, setShowImage] = useState(false);
+  const [currentHunt, setCurrentHunt] = useState(null);
+
+  useEffect(() => {
+    if (huntId) {
+      const hunt = huntData.find(
+        (h) => h.huntId.toString() === huntId.toString()
+      );
+      setCurrentHunt(hunt);
+    }
+  }, [huntId]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -18,7 +33,12 @@ const Claim = () => {
   return (
     <div>
       <div style={{ zIndex: 10000000, position: "absolute" }}>
-        <Link href="/celebration">
+        <Link
+          href={{
+            pathname: "/celebration",
+            query: { huntId },
+          }}
+        >
           {showImage && (
             <div className="fixed top-[150px] left-[55px] h-[303px] w-[310.5px]">
               <svg
@@ -45,7 +65,7 @@ const Claim = () => {
                 />
               </svg>
               <div className="animate-pulse absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <Stamp />
+                <Stamp color={currentHunt.color} image={currentHunt.image} />
               </div>
             </div>
           )}

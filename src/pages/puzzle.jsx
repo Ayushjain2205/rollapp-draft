@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import Page from "../components/Layout/Page";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Puzzle() {
+  const router = useRouter();
+  const { huntId } = router.query;
   const wordToFind = "DONALD";
 
   const generateGrid = () => {
@@ -173,7 +176,12 @@ export default function Puzzle() {
         </div>
         {wordStatus === "correct" && (
           <div className="mt-4">
-            <Link href="/claim">
+            <Link
+              href={{
+                pathname: "/claim",
+                query: { huntId },
+              }}
+            >
               <button className="flex flex-row items-center gap-[8px] text-white bg-[#262626] h-[40px] w-[160px] rounded-[8px] font-[500] justify-center">
                 Claim
                 <svg

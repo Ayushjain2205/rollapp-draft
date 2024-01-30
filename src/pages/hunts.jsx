@@ -8,6 +8,7 @@ import {
 import mapStyle from "../utils/mapStyle.json";
 import Stamp from "../components/UI/Stamp";
 import Link from "next/link";
+import { huntData } from "../utils/huntData";
 
 const Hunts = () => {
   const [userLocation, setUserLocation] = useState(null);
@@ -57,68 +58,6 @@ const Hunts = () => {
         Math.PI;
 
     return { lat, lng };
-  };
-
-  const huntData = [
-    {
-      huntName: "Find Mickey",
-      expiryDate: "2024-12-31",
-      image: "/images/mickey.png",
-      color: "#FFC022",
-      utilityOne: "Free Entry to Disneyland",
-      utilityTwo: "20% Off at Disney Store",
-      location: "Disneyland Park, Paris",
-      huntDescription: "Solve the clues to win free goodies at your loved spot",
-    },
-    {
-      huntName: "H&M's Hunt",
-      expiryDate: "2025-01-15",
-      image: "/images/hm.png",
-      color: "#FB4912",
-      utilityOne: "30% Off on Apparel",
-      utilityTwo: "Special Access to Sales",
-      location: "H&M Store, New York",
-      huntDescription: "Find hidden treasures in the latest collections",
-    },
-    {
-      huntName: "Where iPhone",
-      expiryDate: "2024-11-20",
-      image: "/images/apple.png",
-      color: "#FCFCFC",
-      utilityOne: "Early Access to iPhone",
-      utilityTwo: "Exclusive Apple Merchandise",
-      location: "Apple Store, Cupertino",
-      huntDescription: "Discover the secrets of the latest Apple technology",
-    },
-    {
-      huntName: "McD's Special",
-      expiryDate: "2024-10-31",
-      image: "/images/mcd.png",
-      color: "#FEC7C7",
-      utilityOne: "Free Happy Meal",
-      utilityTwo: "Buy One Get One Free Burger",
-      location: "McDonald's, Chicago",
-      huntDescription: "Uncover tasty treats in a fun-filled burger hunt",
-    },
-    {
-      huntName: "Coffee Fiesta",
-      expiryDate: "2024-12-10",
-      image: "/images/starbucks.png",
-      color: "#F091F9",
-      utilityOne: "Free Custom Drink",
-      utilityTwo: "20% Off on Merchandise",
-      location: "Starbucks, Seattle",
-      huntDescription: "Embark on a journey to discover unique coffee",
-    },
-  ];
-
-  const linkData = {
-    huntName: "Find Mickey",
-    expiryDate: "2024-12-31",
-    image: "/images/mickey.png",
-    color: "#FF0205",
-    utilityOne: "Free Entry to Disneyland",
-    utilityTwo: "20% Off at Disney Store",
   };
 
   useEffect(() => {
@@ -208,7 +147,7 @@ const Hunts = () => {
           <Link
             href={{
               pathname: "/preview",
-              query: linkData,
+              query: { huntId: activeOverlay + 1 },
             }}
           >
             <div className="absolute flex bottom-0 w-full h-[48px] items-center bg-[#262626]">
