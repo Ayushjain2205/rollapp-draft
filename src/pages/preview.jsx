@@ -25,7 +25,7 @@ const Preview = () => {
   }
 
   return (
-    <Page back="/hunts" pageColor="#FFC022">
+    <Page back="/hunts" pageColor={currentHunt.color}>
       <div className="relative flex flex-col items-center h-[547px] w-[348px] rounded-[8px] border-[3px] border-black bg-white pt-[12px] px-[23px]">
         <Stamp color={currentHunt.color} image={currentHunt.image} />
         <p className="w-full text-[32px] font-[700]">{currentHunt.huntName}</p>

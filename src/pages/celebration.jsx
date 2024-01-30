@@ -37,7 +37,12 @@ const Celebration = () => {
       <p className="text-[32px] tracking-[0.2px] font-[700] mb-[64px]">
         {currentHunt.huntName}
       </p>
-      <Link href="/passport">
+      <Link
+        href={{
+          pathname: "/passport",
+          query: { huntId },
+        }}
+      >
         <button className="flex flex-row items-center gap-[8px] text-white bg-[#262626] h-[46px] w-[186px] rounded-[8px] justify-center">
           View my passport
         </button>

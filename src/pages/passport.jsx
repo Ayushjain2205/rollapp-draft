@@ -1,40 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Page from "../components/Layout/Page";
 import PassportPage from "../components/UI/PassportPage";
 import { FlippingPages } from "flipping-pages";
 import "flipping-pages/dist/style.css";
+import { useRouter } from "next/router";
+import { huntData } from "../utils/huntData";
 
 const Passport = () => {
+  const router = useRouter();
+  const { huntId } = router.query;
   const [selected, setSelected] = useState(0);
+  const totalPages = huntData.length;
 
-  const passportPages = [
-    {
-      huntName: "Mickey's Hunt",
-      expiryDate: "2024-12-31",
-      stampImage: "/images/mickey.png",
-      stampColor: "#FF0205",
-      utilityOne: "Free Entry to Disneyland",
-      utilityTwo: "20% Off at Disney Store",
-    },
-    {
-      huntName: "Mickey's Hunt",
-      expiryDate: "2024-12-31",
-      stampImage: "/images/mickey.png",
-      stampColor: "#430235",
-      utilityOne: "Free Entry to Disneyland",
-      utilityTwo: "20% Off at Disney Store",
-    },
-    {
-      huntName: "Mickey's Hunt",
-      expiryDate: "2024-12-31",
-      stampImage: "/images/mickey.png",
-      stampColor: "#FFFF05",
-      utilityOne: "Free Entry to Disneyland",
-      utilityTwo: "20% Off at Disney Store",
-    },
-  ];
-
-  const totalPages = passportPages.length;
+  useEffect(() => {
+    if (huntId) {
+      const huntIndex = huntData.findIndex(
+        (h) => h.huntId.toString() === huntId
+      );
+      if (huntIndex !== -1) {
+        setSelected(huntIndex);
+      }
+    }
+  }, [huntId]);
 
   const goToPreviousPage = () => {
     if (selected > 0) {
@@ -56,13 +43,13 @@ const Passport = () => {
           onSwipeEnd={setSelected}
           selected={selected}
         >
-          {passportPages.map((page, index) => (
+          {huntData.map((page, index) => (
             <PassportPage
               key={index}
               huntName={page.huntName}
               expiryDate={page.expiryDate}
-              stampImage={page.stampImage}
-              stampColor={page.stampColor}
+              stampImage={page.image}
+              stampColor={page.color}
               utilityOne={page.utilityOne}
               utilityTwo={page.utilityTwo}
             />
