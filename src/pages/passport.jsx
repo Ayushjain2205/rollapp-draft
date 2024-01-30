@@ -50,7 +50,7 @@ const Passport = () => {
 
   return (
     <Page back="/passport-cover" pageColor="#FFC022" showMenu>
-      <div className="absolute top-[65px] left-[21px] w-[348px] h-[458px]">
+      <div className="absolute top-[65px] left-[21px] w-[348px] h-[498px]">
         <FlippingPages
           direction="right-to-left"
           onSwipeEnd={setSelected}

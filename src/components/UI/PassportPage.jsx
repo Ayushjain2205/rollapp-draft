@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Stamp from "./Stamp";
+import { QRCode } from "react-qrcode-logo";
 
 const PassportPage = ({
   huntName,
@@ -11,9 +12,14 @@ const PassportPage = ({
   utilityOneType,
   utilityTwoType,
 }) => {
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const toggleOverlay = () => {
+    setShowOverlay(!showOverlay);
+  };
   return (
     <div>
-      <div className="flex flex-col items-center h-[458px] w-[348px] rounded-[8px] border-[3px] border-black bg-white pt-[12px] px-[23px]">
+      <div className="flex flex-col items-center h-[498px] w-[348px] rounded-[8px] border-[3px] border-black bg-white pt-[12px] px-[23px]">
         <Stamp color={stampColor} image={stampImage} />
         <p className="w-full text-[32px] font-[700]">{huntName}</p>
         <p className="w-full text-[#F24E1E] font-[700]">
@@ -44,7 +50,29 @@ const PassportPage = ({
             </span>
           </div>
         </div>
+        <div
+          className="absolute flex bottom-0 w-full h-[48px] items-center bg-[#262626] rounded-[8px]"
+          onClick={toggleOverlay}
+        >
+          <p className="text-center text-white w-full">Claim utility</p>
+        </div>
       </div>
+      {showOverlay && (
+        <div
+          className="fixed top-0 left-0 right-0 bottom-0 bg-[#FFC022] bg-opacity-40 flex justify-center items-center rounded-[8px]"
+          onClick={toggleOverlay}
+        >
+          <div className="flex flex-col items-center justify-center bg-white  h-[221px] w-[243px] border-black border-2 rounded-[10px]">
+            <QRCode
+              value="https://example.com"
+              qrStyle="dots"
+              bgColor="#FFFFFF"
+              fgColor="#000"
+              size={140}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
