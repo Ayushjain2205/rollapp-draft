@@ -15,7 +15,7 @@ export default function Home() {
       // Check the connection status after 3 seconds
       if (connectionStatus === "connected") {
         console.log("connected");
-        router.push("/passport-cover"); // Navigate to /test if connected
+        router.push("/hunts"); // Navigate to /test if connected
       } else {
         setAnimateMoveUp(true);
         // Additional timeout to wait for the move-up animation to complete

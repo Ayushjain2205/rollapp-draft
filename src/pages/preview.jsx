@@ -16,7 +16,7 @@ const Preview = () => {
   } = router.query;
 
   return (
-    <Page back="/hunts">
+    <Page back="/hunts" pageColor="#FFC022">
       <div className="relative flex flex-col items-center h-[547px] w-[348px] rounded-[8px] border-[3px] border-black bg-white pt-[12px] px-[23px]">
         <Stamp color={stampColor} image={stampImage} />
         <p className="w-full text-[32px] font-[700]">{huntName}</p>

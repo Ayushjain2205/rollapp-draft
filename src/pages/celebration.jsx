@@ -9,7 +9,7 @@ const celebration = () => {
     <Page>
       <Confetti width="400" height="665" />
       <p className="text-[24px] mb-[32px]">YAAYY! YOU WON!</p>
-      <Stamp />
+      <Stamp image="/images/mickey.png" large />
       <p className="text-[32px] tracking-[0.2px] font-[700] mb-[64px]">
         find Mickey!
       </p>
