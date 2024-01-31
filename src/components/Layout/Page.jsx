@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const Page = ({
   children,
@@ -7,6 +7,9 @@ const Page = ({
   showMenu = false,
   back = "",
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
+
   return (
     <div
       className="relative flex flex-col items-center h-[665px] w-[390px] p-[20px]"
@@ -41,12 +44,20 @@ const Page = ({
             height="20"
             viewBox="0 0 20 20"
             fill="none"
+            onClick={toggleDropdown}
+            className="cursor-pointer"
           >
             <path
               d="M0 7.33333H20M0 2H20M0 12.6667H20M0 18H20"
               stroke="#262626"
             />
           </svg>
+        )}
+        {showDropdown && (
+          <div className="flex flex-col gap-[10px] w-[150px] absolute top-[50px] right-[20px] bg-white shadow-md rounded-lg p-4 z-50">
+            <Link href="/hunts">Hunt</Link>
+            <Link href="/profile">My Profile</Link>
+          </div>
         )}
       </div>
       <div className="flex flex-col items-center justify-center h-full">
