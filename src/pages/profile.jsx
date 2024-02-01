@@ -1,6 +1,10 @@
 import React from "react";
 import Page from "../components/Layout/Page";
-import { useAddress, useWalletConfig } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useWalletConfig,
+  ConnectWallet,
+} from "@thirdweb-dev/react";
 
 const profile = () => {
   const address = useAddress();
@@ -8,8 +12,7 @@ const profile = () => {
 
   return (
     <Page>
-      profile
-      <div>{address}</div>
+      <ConnectWallet />
     </Page>
   );
 };

@@ -31,7 +31,6 @@ const Claim = () => {
   return (
     <div className="relative h-[665px] w-[390px]">
       <Cameraview />
-
       {showImage && currentHunt && (
         <Link href={{ pathname: "/celebration", query: { huntId } }}>
           <div className="absolute top-[150px] left-[55px] h-[303px] w-[310.5px] z-10">
