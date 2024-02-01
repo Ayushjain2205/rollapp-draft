@@ -4,7 +4,7 @@ import { Camera } from "react-camera-pro";
 const Cameraview = () => {
   const camera = useRef(null);
   return (
-    <div>
+    <div className="h-[665px] w-[390px]">
       <Camera ref={camera} facingMode="environment" style={{ zIndex: 0 }} />
     </div>
   );

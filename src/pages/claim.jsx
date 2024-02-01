@@ -71,7 +71,7 @@ const Claim = () => {
           )}
         </Link>
       </div>
-      <div style={{ zIndex: 0 }}>
+      <div className="h-[665px] w-[390px]" style={{ zIndex: 0 }}>
         <Cameraview />
       </div>
     </div>
