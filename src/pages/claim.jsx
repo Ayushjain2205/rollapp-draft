@@ -25,55 +25,45 @@ const Claim = () => {
     const timeout = setTimeout(() => {
       setShowImage(true);
     }, 7000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
+    return () => clearTimeout(timeout);
   }, []);
+
   return (
-    <div>
-      <div style={{ zIndex: 10000000, position: "absolute" }}>
-        <Link
-          href={{
-            pathname: "/celebration",
-            query: { huntId },
-          }}
-        >
-          {showImage && (
-            <div className="fixed top-[150px] left-[55px] h-[303px] w-[310.5px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="310.5"
-                height="303"
-                viewBox="0 0 310.5 303"
-                fill="none"
-                className="animate-spin"
-              >
-                <circle
-                  cx="157.25"
-                  cy="151.5"
-                  r="147"
-                  stroke="#F24E1E"
-                  strokeWidth="4"
-                />
-                <circle
-                  cx="151.5"
-                  cy="157"
-                  r="147"
-                  stroke="#F24E1E"
-                  strokeWidth="4"
-                />
-              </svg>
-              <div className="animate-pulse absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <Stamp color={currentHunt.color} image={currentHunt.image} />
-              </div>
+    <div className="relative h-[665px] w-[390px]">
+      <Cameraview />
+
+      {showImage && currentHunt && (
+        <Link href={{ pathname: "/celebration", query: { huntId } }}>
+          <div className="absolute top-[150px] left-[55px] h-[303px] w-[310.5px] z-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="310.5"
+              height="303"
+              viewBox="0 0 310.5 303"
+              fill="none"
+              className="animate-spin"
+            >
+              <circle
+                cx="157.25"
+                cy="151.5"
+                r="147"
+                stroke="#F24E1E"
+                strokeWidth="4"
+              />
+              <circle
+                cx="151.5"
+                cy="157"
+                r="147"
+                stroke="#F24E1E"
+                strokeWidth="4"
+              />
+            </svg>
+            <div className="animate-pulse absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <Stamp color={currentHunt.color} image={currentHunt.image} />
             </div>
-          )}
+          </div>
         </Link>
-      </div>
-      <div className="h-[665px] w-[390px]" style={{ zIndex: 0 }}>
-        <Cameraview />
-      </div>
+      )}
     </div>
   );
 };
