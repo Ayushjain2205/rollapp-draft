@@ -1,40 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🌟 Inspiration
 
-## Getting Started
+Our team at Entropy Labs has a rich background with utility NFTs. We've always aimed to answer these questions:
 
-First, run the development server:
+- How do we bring utility NFTs to the general public, including Web 2.0 brands?
+- How can we abstract this concept for users and bring mass adoption into the picture?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This desire to bridge the gap between the digital world of NFTs and the real-world interaction of traditional marketing inspired us to create _"stamps!"_.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💡 What it does
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**stamps!** is a unique marketing tool transformed into an engaging game. Brands can place their utility NFTs, which we call "stamps", at various geolocations worldwide. Users then collect these stamps, which come with underlying benefits that they can utilize before expiration. If not interested or unable to utilize the benefits, users can sell their stamps in a secondary market. This not only adds a new dimension to customer-brand interaction but also introduces an additional revenue stream for brands through secondary sales.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🔧 How we built it
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+We developed a mobile-first web experience using NextJs, focusing on making the platform fun and easy to navigate. The NFTs are created and managed on the Flow blockchain, leveraging its unique architecture and scalability features for high transaction volume. We use Niftory APIs for a seamless wallet-less onboarding experience, minting, and transferring NFTs to the user's wallet. The NFTs are nested on the unique network to create geo-tagged NFTs, with child NFTs representing the benefits provided by each brand.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ⚠️ Challenges we ran into
 
-## Learn More
+**UX Pov :**
+We ran into problems when defining the UX because such an experience is fairly new, the combination of NFTS with AR and also with secondary selling. The app needs to be fun and not too tiring for the user to navigate around. The colors used tried to ease the tension but as we move ahead we continue to use jargon they are familiar with and make it a point to make it more fun for them!
 
-To learn more about Next.js, take a look at the following resources:
+**Tech Pov:**
+We have created a mobile-first web experience keeping in mind how a web-first experience can help in mass adoption. The website is built using NextJs, it was hard integrating so many moving parts into a Nextjs project. Getting the camera view working on all devices took some debugging.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏆 Accomplishments that we're proud of
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Despite the challenges, we successfully created an innovative platform that combines NFTs, AR, geolocation, and secondary selling, all while maintaining a user-friendly interface. We are proud to have transformed a complex concept into a fun, easy-to-use game.
 
-## Deploy on Vercel
+## 🎓 What we learned
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project was a learning curve, from familiarizing ourselves with graphQL to designing an intuitive UX for a novel concept. It reinforced the importance of user-centered design and broadened our understanding of the potential applications of NFTs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🔮 What's next for Stamps
+
+We plan to continue refining the user experience, incorporating user feedback to make the platform more engaging. Additionally, we plan to introduce physical versions of the **PASSPORT**, enabling users to carry their collection and redeem their benefits in physical stores.
