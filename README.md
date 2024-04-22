@@ -13,9 +13,10 @@ This desire to bridge the gap between the digital world of NFTs and the real-wor
 
 ## 🔧 How we built it
 
-We developed a mobile-first web experience using NextJs, focusing on making the platform fun and easy to navigate. The NFTs are created and managed on the Flow blockchain, leveraging its unique architecture and scalability features for high transaction volume. We use Niftory APIs for a seamless wallet-less onboarding experience, minting, and transferring NFTs to the user's wallet. The NFTs are nested on the unique network to create geo-tagged NFTs, with child NFTs representing the benefits provided by each brand.
+We developed a mobile-first web experience using NextJs, focusing on making the platform fun and easy to navigate. The NFTs are created and managed on the Shardeum blockchain, leveraging its unique architecture and scalability features for high transaction volume. We use Niftory APIs for a seamless wallet-less onboarding experience, minting, and transferring NFTs to the user's wallet. The NFTs are nested on the unique network to create geo-tagged NFTs, with child NFTs representing the benefits provided by each brand.
 
-[Deployed Contract](https://blockscout.botanixlabs.dev/address/0xe1F7e21f1C648A10b2B1453C251d54d31838684A)
+[Geotagged NFTs Contract](https://explorer-sphinx.shardeum.org/address/0x932b4902AC3E40b46661881fBcA91268C81DFBf3)
+[Smart Wallet Contract](https://explorer-sphinx.shardeum.org/address/0xe1F7e21f1C648A10b2B1453C251d54d31838684A)
 
 ## ⚠️ Challenges we ran into
 
