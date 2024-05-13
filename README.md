@@ -11,12 +11,9 @@ This desire to bridge the gap between the digital world of NFTs and the real-wor
 
 **stamps!** is a unique marketing tool transformed into an engaging game. Brands can place their utility NFTs, which we call "stamps", at various geolocations worldwide. Users then collect these stamps, which come with underlying benefits that they can utilize before expiration. If not interested or unable to utilize the benefits, users can sell their stamps in a secondary market. This not only adds a new dimension to customer-brand interaction but also introduces an additional revenue stream for brands through secondary sales.
 
-## 🔧 How we built it
+## 🔧 How we used Rollapps
 
-We developed a mobile-first web experience using NextJs, focusing on making the platform fun and easy to navigate. The NFTs are created and managed on the Shardeum blockchain, leveraging its unique architecture and scalability features for high transaction volume. We use Niftory APIs for a seamless wallet-less onboarding experience, minting, and transferring NFTs to the user's wallet. The NFTs are nested on the unique network to create geo-tagged NFTs, with child NFTs representing the benefits provided by each brand.
-
-[Geotagged NFTs Contract](https://explorer-sphinx.shardeum.org/address/0x932b4902AC3E40b46661881fBcA91268C81DFBf3)
-[Smart Wallet Contract](https://explorer-sphinx.shardeum.org/address/0xe1F7e21f1C648A10b2B1453C251d54d31838684A)
+By leveraging RollApps, stamps! gains access to a network of easily deployable and lightning-fast modular blockchains. This enables the platform to efficiently manage the creation, distribution, and exchange of utility NFTs ("stamps") in a secure and scalable manner. Additionally, RollApps provide the flexibility to adapt to future blockchain innovations, ensuring that stamps! remains at the forefront of NFT technology.
 
 ## ⚠️ Challenges we ran into
 
@@ -29,10 +26,6 @@ We have created a mobile-first web experience keeping in mind how a web-first ex
 ## 🏆 Accomplishments that we're proud of
 
 Despite the challenges, we successfully created an innovative platform that combines NFTs, AR, geolocation, and secondary selling, all while maintaining a user-friendly interface. We are proud to have transformed a complex concept into a fun, easy-to-use game.
-
-## 🎓 What we learned
-
-This project was a learning curve, from familiarizing ourselves with graphQL to designing an intuitive UX for a novel concept. It reinforced the importance of user-centered design and broadened our understanding of the potential applications of NFTs.
 
 ## 🔮 What's next for Stamps
 
